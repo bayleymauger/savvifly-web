@@ -30,7 +30,7 @@ const Header = () => {
       <Container maxWidth="container.xl">
         <Flex justify="space-between" align="center">
           <Link to="/">
-            <Image src={logo} alt="savvifly" width="140px" />
+            <Image src={logo} alt="trip hawk logo" width="140px" />
           </Link>
 
           {user ? (

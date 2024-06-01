@@ -8,15 +8,14 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyByx6q6hmr_R0uNWBRDjVbaEBRoY8fvLAQ",
-  authDomain: "savvifly-cddb8.firebaseapp.com",
-  projectId: "savvifly-cddb8",
-  storageBucket: "savvifly-cddb8.appspot.com",
-  messagingSenderId: "775830837232",
-  appId: "1:775830837232:web:b09f4b487b4a5387c86f35",
-  measurementId: "G-4QG32BW38M",
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: "trip-hawk.firebaseapp.com",
+  projectId: "trip-hawk",
+  storageBucket: "trip-hawk.appspot.com",
+  messagingSenderId: "238591170672",
+  appId: "1:238591170672:web:d7f7eeeb56bdb7e169bcb5",
+  measurementId: "G-NW92ENE1XE",
 };
-
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
