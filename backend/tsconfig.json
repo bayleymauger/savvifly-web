@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2019", // Set the target ECMAScript version (change if needed)
+    "module": "commonjs", // Module system (commonjs for Node.js)
+    "outDir": "./dist", // Output directory for compiled files
+    "baseUrl": ".", // Base directory for resolving non-relative modules
+    "strict": false, // Enable strict mode for type safety
+    "moduleResolution": "node", // Module resolution strategy for Node.js
+    "resolveJsonModule": true, // Allow resolving JSON modules
+    "esModuleInterop": true, // Enable ES module interop for compatibility
+    "allowJs": true, // Allow compiling JavaScript files (optional)
+    "skipLibCheck": true, // Skip type checking for library files (optional)
+    "forceConsistentCasingInFileNames": true // Enforce consistent file naming casing (optional)
+  },
+  "include": [
+    "src" // Include source files from the "src" directory
+  ],
+  "exclude": [
+    "node_modules" // Exclude the "node_modules" directory
+  ]
+}
