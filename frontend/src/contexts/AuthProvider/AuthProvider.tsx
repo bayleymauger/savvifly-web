@@ -9,10 +9,13 @@ import {
 } from "react";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import AuthModal from "../../components/AuthModal";
+import { useDisclosure } from "@chakra-ui/react";
 
 export type AuthContext = {
   user?: User;
   signOut: () => void;
+  modal: ReturnType<typeof useDisclosure>;
 };
 
 const AuthContext = createContext<AuthContext>({
@@ -23,6 +26,7 @@ const AuthContext = createContext<AuthContext>({
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState<AuthContext["user"]>();
+  const modal = useDisclosure();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -46,8 +50,9 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [navigate]);
 
   return (
-    <AuthContext.Provider value={{ user, signOut }}>
+    <AuthContext.Provider value={{ user, signOut, modal }}>
       {children}
+      <AuthModal isOpen={modal.isOpen} onClose={modal.onClose} />
     </AuthContext.Provider>
   );
 };

@@ -1,33 +1,43 @@
-import { Button, Flex, Input, Stack } from "@chakra-ui/react";
+import { Button, Stack, Text } from "@chakra-ui/react";
+import { motion } from "framer-motion";
+import { useAuth } from "../../../../contexts/AuthProvider";
 
-const HeroRight = () => (
-  <Flex
-    width="100%"
-    backgroundColor="brandDark.400"
-    borderRadius="40"
-    justify="center"
-    align="center"
-    padding="16"
-  >
+const HeroRight = () => {
+  const { modal } = useAuth();
+
+  return (
     <Stack
-      backgroundColor="white"
-      borderRadius="40"
-      width="100%"
-      height="100%"
-      padding="8"
       spacing="4"
+      justify="center"
+      direction="column"
+      color="brand.400"
+      width="30%"
     >
-      <Input placeholder="2 Adult, 1 Children" />
-
-      <Input placeholder="From" />
-      <Input placeholder="To" />
-
-      <Input placeholder="Depart" />
-      <Input placeholder="Return" />
-
-      <Button size="lg">Search</Button>
+      <Text
+        as={motion.h1}
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0, transition: { delay: 0.25 } }}
+        fontFamily="display"
+        fontSize="4xl"
+      >
+        Travel Smarter, Not Harder: Your All-in-One Price Tracking App.
+      </Text>
+      <Stack
+        spacing="6"
+        as={motion.div}
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0, transition: { delay: 0.3 } }}
+      >
+        <Text as="h2" fontSize="xl">
+          Set price alerts for flights, hotels, and activities. Get notified
+          when prices drop and book your dream trip for less.
+        </Text>
+        <Button size="lg" onClick={modal.onOpen}>
+          Get Started
+        </Button>
+      </Stack>
     </Stack>
-  </Flex>
-);
+  );
+};
 
 export default HeroRight;

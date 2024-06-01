@@ -8,7 +8,7 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
+  apiKey: "AIzaSyByx6q6hmr_R0uNWBRDjVbaEBRoY8fvLAQ",
   authDomain: "savvifly-cddb8.firebaseapp.com",
   projectId: "savvifly-cddb8",
   storageBucket: "savvifly-cddb8.appspot.com",
