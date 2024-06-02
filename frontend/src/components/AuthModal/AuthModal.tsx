@@ -20,7 +20,7 @@ export type AuthModalProps = {
 const AuthModal = ({ isOpen, onClose }: AuthModalProps) => (
   <Modal isOpen={isOpen} onClose={onClose} isCentered>
     <ModalOverlay />
-    <ModalContent py="8">
+    <ModalContent py="8" rounded="xl">
       <ModalHeader>
         <Text fontSize="3xl" fontWeight="bold" marginBottom="4">
           Get the full experience

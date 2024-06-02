@@ -23,41 +23,44 @@ const colors = {
   },
 };
 
+const globalStyles = defineStyle({
+  body: {
+    margin: "0",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    color: "gray.700",
+  },
+  "#root": {
+    width: "100%",
+    height: "100%",
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+  },
+});
+
+// TODO: Move component based themes into seperate folders
 const baseButtonStyles = defineStyle({
-  borderRadius: "30",
-});
-
-const ghostButtonStyles = defineStyle({
-  borderColor: "brand.500",
-  _hover: {
-    borderColor: "brand.500",
-    color: "white",
-    backgroundColor: "brand.500",
-  },
-});
-
-const solidButtonStyles = defineStyle({
-  backgroundColor: "brand.500",
-  color: "white",
-  _hover: {
-    backgroundColor: "white",
-    color: "black",
-    borderColor: "brand.500",
-  },
+  rounded: "2xl",
 });
 
 const buttonTheme = defineStyleConfig({
   baseStyle: baseButtonStyles,
-  variants: {
-    solid: solidButtonStyles,
-    ghost: ghostButtonStyles,
-  },
+  variants: {},
 });
 
 const components = {
   Button: buttonTheme,
 };
 
-const theme = extendTheme({ colors, fonts, components });
+const theme = extendTheme({
+  colors,
+  fonts,
+  components,
+  styles: {
+    global: globalStyles,
+  },
+});
 
 export default theme;

@@ -1,4 +1,3 @@
-import { User, onAuthStateChanged, signOut as fbSignOut } from "firebase/auth";
 import {
   ReactNode,
   createContext,
@@ -8,10 +7,11 @@ import {
   useMemo,
   useState,
 } from "react";
-import { auth } from "../../firebase";
+import { User, onAuthStateChanged, signOut as fbSignOut } from "firebase/auth";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useDisclosure } from "@chakra-ui/react";
+import { auth } from "../../firebase";
 import AuthModal from "../../components/AuthModal";
-import { Flex, Spinner, useDisclosure } from "@chakra-ui/react";
 import FullPageSpinner from "../../components/FullPageSpinner";
 
 export type AuthContext = {
@@ -42,6 +42,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const triggerAuth = searchParams.get("auth") !== null;
   const navigate = useNavigate();
+  const location = useLocation();
   const modal = useDisclosure({
     defaultIsOpen: triggerAuth,
   });
@@ -61,7 +62,10 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
-        navigate("/dashboard");
+
+        if (location.pathname === "/") {
+          navigate("/dashboard");
+        }
       }
 
       setLoading(false);
@@ -70,7 +74,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => {
       unsubscribe();
     };
-  }, [navigate]);
+  }, [navigate, location.pathname]);
 
   useEffect(() => {
     if (triggerAuth && !modal.isOpen) {
