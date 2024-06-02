@@ -8,6 +8,7 @@ const FullPageSpinner = () => (
     justify="center"
     align="center"
     direction="column"
+    px="4"
   >
     <Image src={logo} alt="trip hawk logo" maxWidth="360px" mb="8" />
     <Spinner size="xl" thickness="4px" color="#FFCB5D" />

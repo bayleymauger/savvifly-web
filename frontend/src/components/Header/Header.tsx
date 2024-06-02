@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 
 const Header = () => {
   const {
+    user,
     modal: { onOpen },
   } = useAuth();
 
@@ -24,9 +25,11 @@ const Header = () => {
             <Image src={logo} alt="trip hawk logo" width="140px" />
           </Link>
 
-          <Button size="lg" onClick={onOpen}>
-            Sign in
-          </Button>
+          {!user && (
+            <Button size="lg" onClick={onOpen}>
+              Sign in
+            </Button>
+          )}
         </Flex>
       </Container>
     </Box>

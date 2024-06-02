@@ -1,7 +1,6 @@
 import {
   Button,
   Flex,
-  Icon,
   ListItem,
   UnorderedList,
   Image,
@@ -18,21 +17,32 @@ import { motion } from "framer-motion";
 
 type AuthenticatedRouteKey = keyof typeof AUTHENTICATED_ROUTES;
 
-const ICON_MAP: { [key in AuthenticatedRouteKey]: IconType } = {
-  ["/dashboard"]: MdSpaceDashboard,
-  ["/user"]: FaUser,
-  ["/settings"]: FaCog,
-  ["/search"]: FaSearch,
-  ["/tracked"]: CgTrack,
-  ["/alerts"]: FaBell,
+const MISC_ROUTES: AuthenticatedRouteKey[] = ["/profile", "/settings"];
+
+type NavItem = {
+  title: string;
+  icon: IconType;
 };
 
-const MISC_ROUTES: AuthenticatedRouteKey[] = ["/user", "/settings"];
+const NAV_MAP: {
+  [key in AuthenticatedRouteKey]: NavItem;
+} = {
+  ["/dashboard"]: { title: "Dashboard", icon: MdSpaceDashboard },
+  ["/profile"]: { title: "Profile", icon: FaUser },
+  ["/settings"]: { title: "Settings", icon: FaCog },
+  ["/search"]: { title: "Search", icon: FaSearch },
+  ["/tracked"]: { title: "Tracked", icon: CgTrack },
+  ["/alerts"]: { title: "Alerts", icon: FaBell },
+};
 
-const Sidebar = () => {
+type SidebarProps = {
+  onNavigate?: () => void;
+};
+
+const Sidebar = ({ onNavigate }: SidebarProps) => {
   const location = useLocation();
   const authenticatedRouteKeys = Object.keys(
-    AUTHENTICATED_ROUTES
+    NAV_MAP
   ) as AuthenticatedRouteKey[];
 
   const renderListItem = (path: AuthenticatedRouteKey, index: number) => {
@@ -40,6 +50,9 @@ const Sidebar = () => {
     const variant = isActivePath ? "solid" : "ghost";
     const animationTiming = 0.05;
     const animationDelay = animationTiming * index;
+    const navItem = NAV_MAP[path];
+    const Icon = navItem.icon;
+    const title = navItem.title;
 
     return (
       <ListItem
@@ -48,8 +61,19 @@ const Sidebar = () => {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0, transition: { delay: animationDelay } }}
       >
-        <Button as={Link} to={path} variant={variant}>
-          <Icon as={ICON_MAP[path]} color="gray.700" />
+        <Button
+          as={Link}
+          to={path}
+          variant={variant}
+          leftIcon={<Icon color="gray.700" fontSize="initial" />}
+          iconSpacing={{ base: "2", md: "0" }}
+          fontWeight="normal"
+          fontSize={{ base: "initial", md: "0" }}
+          display="flex"
+          justifyContent="flex-start"
+          onClick={onNavigate}
+        >
+          {title}
         </Button>
       </ListItem>
     );
@@ -59,29 +83,32 @@ const Sidebar = () => {
     <Flex
       as="nav"
       background="white"
-      boxShadow="lg"
+      boxShadow={{ base: "none", md: "lg" }}
       zIndex="1"
       rounded="2xl"
-      padding="4"
+      px={{ base: "0", md: "4" }}
+      py="4"
       justify="space-between"
       align="center"
       direction="column"
+      height="100%"
     >
-      <VStack spacing="8">
+      <VStack spacing="8" width="100%">
         <Image
           as={motion.img}
           src={logo}
           alt="trip hawk logo"
+          maxWidth="140px"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         />
-        <UnorderedList listStyleType="none" margin="0" spacing="4">
+        <UnorderedList width="100%" listStyleType="none" margin="0" spacing="4">
           {authenticatedRouteKeys
             .filter((route) => !MISC_ROUTES.includes(route))
             .map(renderListItem)}
         </UnorderedList>
       </VStack>
-      <UnorderedList listStyleType="none" margin="0" spacing="4">
+      <UnorderedList width="100%" listStyleType="none" margin="0" spacing="4">
         {authenticatedRouteKeys
           .filter((route) => MISC_ROUTES.includes(route))
           .map(renderListItem)}

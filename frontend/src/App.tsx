@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AuthProvider from "./contexts/AuthProvider";
 import Dashboard from "./pages/Dashboard";
 import DashboardLayout from "./components/DashboardLayout";
-import User from "./pages/User";
+import Profile from "./pages/Profile";
 
 const queryClient = new QueryClient();
 
@@ -16,7 +16,7 @@ export const PUBLIC_ROUTES = {
 
 export const AUTHENTICATED_ROUTES = {
   ["/dashboard"]: <Dashboard />,
-  ["/user"]: <User />,
+  ["/profile"]: <Profile />,
   ["/settings"]: <div>Settings</div>,
   // ["/flights"]: <Flights />,
   ["/search"]: <div>Search</div>,
