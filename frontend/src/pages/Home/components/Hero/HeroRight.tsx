@@ -27,6 +27,7 @@ const HeroRight = () => {
         as={motion.div}
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0, transition: { delay: 0.3 } }}
+        color="gray.700"
       >
         <Text as="h2" fontSize="xl">
           Set price alerts for flights, hotels, and activities. Get notified

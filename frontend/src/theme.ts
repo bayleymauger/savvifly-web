@@ -10,9 +10,6 @@ const fonts = {
 };
 
 const colors = {
-  brandDark: {
-    400: "#38424f",
-  },
   brand: {
     50: "#8892fe",
     100: "#7480fe",

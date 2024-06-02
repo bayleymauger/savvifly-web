@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Image,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Box, Button, Container, Flex, Image } from "@chakra-ui/react";
 import logo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthProvider";
@@ -21,8 +14,8 @@ const Header = () => {
   return (
     <Box
       as={motion.header}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       py="4"
       zIndex="banner"
       position="relative"

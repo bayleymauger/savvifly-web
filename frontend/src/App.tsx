@@ -5,6 +5,7 @@ import Flights from "./pages/Flights";
 import "./App.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AuthProvider from "./contexts/AuthProvider";
+import Dashboard from "./pages/Dashboard";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="/flights" element={<Flights />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="*" element={<div>No dice soz</div>} />
           </Route>
         </Routes>
